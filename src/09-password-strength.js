@@ -27,4 +27,30 @@
  */
 export function checkPasswordStrength(password) {
   // Your code here
+
+
+    switch (type) {
+      case "lower":
+          
+        return  arr.reduce ((acc , item)=>{
+    acc+= (item.charCodeAt(0) >=65 && item.charCodeAt(0) >=65) ? 1 : 0
+  },0)
+      case "upper":
+        
+        return 
+      case "number":
+        
+        return 
+    
+      default:
+        return 
+    }
+  }
+
+
+  let totalUpperCae=password.split('')
+  // if(password.length < 8) return "weak";
+  // else if()
+
+
 }

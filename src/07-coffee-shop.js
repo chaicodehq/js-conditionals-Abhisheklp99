@@ -32,4 +32,102 @@
  */
 export function calculateCoffeePrice(size, type, extras = {}) {
   // Your code here
+  let finalPrice=0;
+   function getTwoPrices(){
+      return( (extras?.whippedCream ? 0.50 : 0 ) + ( extras?.extraShot ? 0.75 : 0) )
+    }
+
+    // let objSizeType={
+    //   "small":"small",
+    //   "medium":"medium",
+    //   "large":"large",
+    //   "regular":'regular',
+    //   "latte":"latte",
+    //   "cappuccino":"cappuccino",
+    //   "mocha":"mocha"
+    // }
+    let objSizeType = {
+  small: true, medium: true, large: true,
+  regular: true, latte: true, cappuccino: true, mocha: true
+};
+
+if (!objSizeType[size] || !objSizeType[type]){
+   return -1;
+}
+
+  else {
+    
+ 
+    if(size ==='small'){
+      if(type === 'regular'){
+        // const finalPrice1=extras?.whippedCream ?? 0; 
+        // const finalPrice2=extras?.extraShot ?? 0 ;
+
+        finalPrice=getTwoPrices() + 3
+      }
+      else if(type === 'latte'){
+       
+        finalPrice=getTwoPrices() +4
+      }
+      else if(type === 'cappuccino') {
+      
+
+        finalPrice=getTwoPrices() + 4.50;
+      
+      }
+      else {
+  
+        finalPrice=getTwoPrices() + 5
+      } 
+    }
+
+    else if(size ==='medium'){
+
+           if(type === 'regular'){
+        finalPrice= getTwoPrices() + 4 ;
+
+           }
+      else if(type === 'latte'){
+            finalPrice= getTwoPrices() + 5;
+            
+      }
+      else if(type === 'cappuccino') {
+    
+        finalPrice=getTwoPrices() + 5.50
+      }
+      else {
+          finalPrice= getTwoPrices() + 6;
+      } 
+
+
+    }
+    else {
+
+      
+           if(type === 'regular'){
+        finalPrice= getTwoPrices() + 5;
+        
+      }
+      else if(type === 'latte'){
+            finalPrice= getTwoPrices() + 6 ;
+           
+      }
+      else if(type === 'cappuccino') {
+        finalPrice= getTwoPrices() +  6.50;
+        
+      }
+      else {
+          finalPrice= getTwoPrices() + 7;
+          
+      } 
+
+
+    }
+
+
+
+  }
+
+return Math.round(finalPrice * 100) /100
+
 }
