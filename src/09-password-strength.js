@@ -21,36 +21,64 @@
  * Rules:
  *   - Empty string → "weak"
  *   - Non-string input → "weak"
- *
- * @param {string} password - The password to evaluate
+ *password.split('')@param {string} password - The password to evaluate
  * @returns {string} "weak", "medium", "strong", or "very strong"
  */
 export function checkPasswordStrength(password) {
   // Your code here
 
+  if( typeof password !== 'string') return 'weak';
 
-    switch (type) {
-      case "lower":
-          
-        return  arr.reduce ((acc , item)=>{
-    acc+= (item.charCodeAt(0) >=65 && item.charCodeAt(0) >=65) ? 1 : 0
-  },0)
-      case "upper":
-        
-        return 
-      case "number":
-        
-        return 
-    
-      default:
-        return 
-    }
+
+
+  function countTotalSpecialChar(){
+    const arr='(!@#$%^&*()_+-=[]{}|;:,.<>?)'.split('');
+    let totalSpecial=0;
+    password.split('').forEach((item)=> arr.includes(item) ? totalSpecial+=1:0 );
+    return totalSpecial;
   }
 
 
-  let totalUpperCae=password.split('')
-  // if(password.length < 8) return "weak";
-  // else if()
+const totalTypesCount = {
+  
+  totalUpperCase: password.split('').reduce((acc, item) => 
+    acc + (item.charCodeAt(0) >= 65 && item.charCodeAt(0) <= 90 ? 1 : 0), 0),
+
+  totalLowerCase: password.split('').reduce((acc, item) => 
+    acc + (item.charCodeAt(0) >= 97 && item.charCodeAt(0) <= 122 ? 1 : 0), 0),
+
+  totalNumbers: password.split('').reduce((acc, item) => 
+    acc + (item.charCodeAt(0) >= 48 && item.charCodeAt(0) <= 57 ? 1 : 0), 0),
+
+  totalSpecialChar: countTotalSpecialChar(),
+  len: password.length,
+};
+  
+
+// if(totalTypesCount.len <=8) return 'weak';
+// else if(totalTypesCount.len >=8 && totalTypesCount?.totalLowerCase>=1 && totalTypesCount?.totalUpperCase >=1 ) return 'medium'
+// else if(totalTypesCount.len >=8 && totalTypesCount?.totalLowerCase>=1 && totalTypesCount?.totalUpperCase >=1 && totalTypesCount.totalNumbers>=1) return 'strong'
+// else  return 'very strong'
 
 
-}
+let score = 0;
+
+
+if (totalTypesCount.len >= 8) score++;
+
+if (totalTypesCount.totalLowerCase > 0) score++;
+
+if (totalTypesCount.totalUpperCase > 0) score++;
+
+if (totalTypesCount.totalNumbers > 0) score++;
+
+if (totalTypesCount.totalSpecialChar > 0) score++;
+
+if (score <= 1) return 'weak';
+  if (score <= 3) return 'medium';
+  if (score === 4) return 'strong';
+  return 'very strong';
+
+
+  }
+
